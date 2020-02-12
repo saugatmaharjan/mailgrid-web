@@ -40,7 +40,7 @@ const Editor: FC<Props> = () => {
 
   const sendMail = async () => {
     const res = await axios({
-      url: "http://localhost:4000/mail",
+      url: `${process.env.REACT_APP_API_URL}mail`,
       method: "POST",
       headers: {
         contentType: "application/json"
