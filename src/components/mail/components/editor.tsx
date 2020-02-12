@@ -43,7 +43,7 @@ const Editor: FC<Props> = () => {
       url: `${process.env.REACT_APP_API_URL}mail`,
       method: "POST",
       headers: {
-        contentType: "application/json"
+        "Content-Type": "application/json"
       },
       data: mailData
     });
