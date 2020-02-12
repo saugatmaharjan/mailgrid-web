@@ -8,7 +8,8 @@ const appTheme: DefaultTheme = {
     onyx: "#36313D",
     gray: "#484848",
     lighterGray: "#929292",
-    black: "#333"
+    black: "#333",
+    red: "#ef5e5e"
   },
   fonts: ["Montserrat", "sans-serif", "Roboto"],
   fontSizes: {

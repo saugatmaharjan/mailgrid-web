@@ -30,6 +30,10 @@ const GlobalStyle = createGlobalStyle`
   .text-light {
     color: ${props => props.theme.colors.lighterGray}
   }
+
+  .text-warning {
+    color: ${props => props.theme.colors.red}
+  }
 `;
 
 export default GlobalStyle;
