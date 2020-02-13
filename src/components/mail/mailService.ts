@@ -9,7 +9,7 @@ class MailService {
   public sendMail = async (data: IMail): Promise<ISendResponse> => {
     try {
       const res = await axios({
-        url: `${this.apiUrl}mail`,
+        url: `${this.apiUrl}/mail`,
         method: "POST",
         headers: {
           "Content-Type": "application/json"

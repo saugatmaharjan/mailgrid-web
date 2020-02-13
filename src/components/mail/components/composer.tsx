@@ -79,7 +79,7 @@ const Editor: FC<Props> = () => {
 
   return (
     <>
-      {error.status && <ErrorMessage>{error.message}</ErrorMessage>}
+      {error.status && <ErrorMessage>Mail sending failed. Try again!</ErrorMessage>}
       {success && <SuccessMessage>Mail sent successfully.</SuccessMessage>}
       <Wrapper dimmed={loading}>
         <Row>
