@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a composer 1`] = `
+<DocumentFragment>
+  <div
+    class="sc-AxiKw gxOFcj"
+  >
+    <div
+      class="sc-AxhCb exIHPI"
+    >
+      <span
+        class="text-light"
+      >
+        To
+      </span>
+      <input
+        class="sc-AxhUy cxbfHR flex-one"
+        data-testid="to"
+        name="to"
+        required=""
+        type="text"
+        value=""
+      />
+      <span
+        class="sc-AxmLO hYTuik text-light"
+        data-testid="cc-toggle"
+      >
+        CC
+      </span>
+      <span
+        class="sc-AxmLO hYTuik text-light"
+        data-testid="bcc-toggle"
+      >
+        BCC
+      </span>
+    </div>
+    <div
+      class="sc-AxhCb exIHPI"
+    >
+      <span
+        class="text-light"
+      >
+        Subject
+      </span>
+      <input
+        class="sc-AxhUy cxbfHR flex-one"
+        data-testid="subject"
+        name="subject"
+        type="text"
+        value=""
+      />
+    </div>
+    <textarea
+      class="sc-AxgMl iggwgr"
+      data-testid="message"
+      name="text"
+    />
+    <div
+      class="sc-AxheI iClzrt"
+    >
+      <button
+        class="sc-Axmtr cuQrQz"
+        data-testid="submit-btn"
+        disabled=""
+      >
+        Send
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;

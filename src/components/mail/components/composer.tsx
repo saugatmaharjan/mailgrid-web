@@ -13,19 +13,24 @@ interface IMail {
   text: string;
 }
 
+const initialMailData = {
+  to: "",
+  subject: "",
+  text: ""
+};
+
+const initialError = {
+  status: false,
+  message: ""
+};
+
 const Editor: FC<Props> = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<IAppError>({
-    status: false,
-    message: ""
-  });
+  const [error, setError] = useState<IAppError>({ ...initialError });
+  const [success, setSuccess] = useState<boolean>(false);
   const [ccVisibility, setCCVisibility] = useState<boolean>(false);
   const [bccVisibility, setBCCVisibility] = useState<boolean>(false);
-  const [mailData, setMailData] = useState<IMail>({
-    to: "",
-    subject: "",
-    text: ""
-  });
+  const [mailData, setMailData] = useState<IMail>({ ...initialMailData });
 
   const showCC = () => {
     setCCVisibility(true);
@@ -45,39 +50,57 @@ const Editor: FC<Props> = () => {
     }));
   };
 
+  const handleSuccess = () => {
+    setLoading(false);
+    setSuccess(true);
+    setMailData({ ...initialMailData });
+    setError({ ...initialError });
+  };
+
+  const handleError = (error: IAppError) => {
+    setLoading(false);
+    setSuccess(false);
+    setError({ ...error });
+  };
+
   const sendMail = async () => {
     setLoading(true);
+    setSuccess(false);
+    setError({ ...initialError });
     const res = await MailService.sendMail(mailData);
     if (res.success) {
-      setLoading(false);
+      handleSuccess();
     }
 
     if (res.error) {
-      setLoading(false);
-      setError({ ...res.error });
+      handleError({ ...res.error });
     }
   };
 
   return (
     <>
       {error.status && <ErrorMessage>{error.message}</ErrorMessage>}
+      {success && <SuccessMessage>Mail sent successfully.</SuccessMessage>}
       <Wrapper dimmed={loading}>
         <Row>
           <span className="text-light">To</span>
           <Input
+            data-testid="to"
             type="text"
             className="flex-one"
             name="to"
             onChange={handleChange}
             disabled={loading}
+            value={mailData.to}
+            required
           />
           {!ccVisibility && (
-            <Toggle onClick={showCC} className="text-light">
+            <Toggle onClick={showCC} className="text-light" data-testid="cc-toggle">
               CC
             </Toggle>
           )}
           {!bccVisibility && (
-            <Toggle onClick={showBCC} className="text-light">
+            <Toggle onClick={showBCC} className="text-light" data-testid="bcc-toggle">
               BCC
             </Toggle>
           )}
@@ -86,11 +109,13 @@ const Editor: FC<Props> = () => {
           <Row>
             <span className="text-light">CC</span>
             <Input
+              data-testid="cc"
               type="text"
               className="flex-one"
               name="cc"
               onChange={handleChange}
               disabled={loading}
+              value={mailData.cc}
             />
           </Row>
         )}
@@ -98,27 +123,37 @@ const Editor: FC<Props> = () => {
           <Row>
             <span className="text-light">BCC</span>
             <Input
+              data-testid="bcc"
               type="text"
               className="flex-one"
               name="bcc"
               onChange={handleChange}
               disabled={loading}
+              value={mailData.bcc}
             />
           </Row>
         )}
         <Row>
           <span className="text-light">Subject</span>
           <Input
+            data-testid="subject"
             type="text"
             className="flex-one"
             name="subject"
             onChange={handleChange}
             disabled={loading}
+            value={mailData.subject}
           />
         </Row>
-        <Message name="text" onChange={handleChange} disabled={loading} />
+        <Message
+          data-testid="message"
+          name="text"
+          onChange={handleChange}
+          disabled={loading}
+          value={mailData.text}
+        />
         <Footer>
-          <Button onClick={sendMail} disabled={loading || !mailData.to}>
+          <Button onClick={sendMail} disabled={loading || !mailData.to} data-testid="submit-btn">
             Send
           </Button>
         </Footer>
@@ -131,6 +166,12 @@ const ErrorMessage = styled.span`
   display: inline-block;
   margin-bottom: 12px;
   color: ${props => props.theme.colors.red};
+`;
+
+const SuccessMessage = styled.span`
+  display: inline-block;
+  margin-bottom: 12px;
+  color: ${props => props.theme.colors.persianGreen};
 `;
 
 interface IWrapperProps {
@@ -200,7 +241,7 @@ const Toggle = styled.span`
   cursor: pointer;
 
   &:hover {
-    color: ${props => props.theme.colors.black};
+    color: '${props => props.theme.colors.black}';
   }
 `;
 
