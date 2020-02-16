@@ -1,8 +1,9 @@
 import React, { FC, useState, ChangeEvent } from "react";
 import styled from "styled-components";
 
-import MailService from "../mailService";
 import { IAppError } from "interfaces";
+import MailService from "../mailService";
+import { Button } from "components/shared";
 
 interface Props {}
 interface IMail {
@@ -153,7 +154,12 @@ const Editor: FC<Props> = () => {
           value={mailData.text}
         />
         <Footer>
-          <Button onClick={sendMail} disabled={loading || !mailData.to} data-testid="submit-btn">
+          <Button
+            varient="primary"
+            onClick={sendMail}
+            disabled={loading || !mailData.to}
+            data-testid="submit-btn"
+          >
             Send
           </Button>
         </Footer>
@@ -217,23 +223,6 @@ const Message = styled.textarea`
 const Footer = styled.div`
   display: flex;
   margin: 12px 8px;
-`;
-
-const Button = styled.button`
-  min-width: 80px;
-  height: 32px;
-  padding: 4px 16px;
-  background-color: ${props => props.theme.colors.persianGreen};
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
 `;
 
 const Toggle = styled.span`
