@@ -6,7 +6,7 @@ This web app enabled users to send an email from within the app. The app uses `M
 
 I've create simple NodeJS server to send emails. You can find the source code for the server in my another repo here [MailGrid Server](https://github.com/saugatmaharjan/mailgrid-server)
 
-
+Please be noticed tha, since the `Mailgun` and `Sendgrid` account that I've used is sandbox account, the email sending will fail. I will have to manually add varyfied email accounts to may Mailgun and Sendgrid account.
 
 ## Tech stack
 - Single page application of web using `ReactJS` app link [MailGrid](https://inspiring-kare-d8a73a.netlify.com) and github link [MailGrid Web](https://github.com/saugatmaharjan/mailgrid-web)
