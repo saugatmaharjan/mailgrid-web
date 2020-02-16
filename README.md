@@ -14,8 +14,6 @@ Please be noticed tha, since the `Mailgun` and `Sendgrid` account that I've used
 - `Netlify` for hosting client app
 - `Heroku` for hosting NodeJS server
 
-Note: Using netlify enviroment variables setting gave me some error, so I had to push the .env file to github.
-
 ## Links to other projects that I've worked on
 - [Resource Projects](https://resourceprojects.org/)
 - React native app SkjutsGruppen
